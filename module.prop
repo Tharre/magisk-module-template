@@ -1,7 +1,7 @@
-id=template
-name=Template Module
+id=sshd
+name=sshd
 version=v1
 versionCode=1
-author=topjohnwu
-description=A short description
+author=Tharre
+description=A ssh daemon.
 template=3

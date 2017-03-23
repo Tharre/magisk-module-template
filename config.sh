@@ -2,21 +2,21 @@
 #
 # Magisk
 # by topjohnwu
-# 
+#
 # This is a template zip for developers
 #
 ##########################################################################################
 ##########################################################################################
-# 
+#
 # Instructions:
-# 
+#
 # 1. Place your files into system folder (delete the placeholder file)
 # 2. Fill in your module's info into module.prop
 # 3. Configure the settings in this file (common/config.sh)
 # 4. For advanced features, add shell commands into the script files under common:
 #    post-fs-data.sh, service.sh
 # 5. For changing props, add your additional/modified props into common/system.prop
-# 
+#
 ##########################################################################################
 
 ##########################################################################################
@@ -27,7 +27,7 @@
 
 # This will be the folder name under /magisk
 # This should also be the same as the id in your module.prop to prevent confusion
-MODID=template
+MODID=sshd
 
 # Set to true if you need to enable Magic Mount
 # Most mods would like it to be enabled
@@ -40,7 +40,7 @@ PROPFILE=false
 POSTFSDATA=false
 
 # Set to true if you need late_start service script
-LATESTARTSERVICE=false
+LATESTARTSERVICE=true
 
 ##########################################################################################
 # Installation Message
@@ -50,7 +50,7 @@ LATESTARTSERVICE=false
 
 print_modname() {
   ui_print "*******************************"
-  ui_print "     Magisk Module Template    "
+  ui_print "          sshd module          "
   ui_print "*******************************"
 }
 
@@ -85,6 +85,10 @@ REPLACE="
 set_permissions() {
   # Default permissions, don't remove them
   set_perm_recursive  $MODPATH  0  0  0755  0644
+
+  set_perm_recursive  $MODPATH/data/dropbear       0  0  0700  0600
+  set_perm_recursive  $MODPATH/data/dropbear/.ssh  0  0  0700  0600
+  set_perm_recursive  $MODPATH/system/bin          0  0  0755  0755
 
   # Only some special files require specific permissions
   # The default permissions should be good enough for most cases
